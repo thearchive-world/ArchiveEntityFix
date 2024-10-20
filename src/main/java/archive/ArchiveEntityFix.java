@@ -13,7 +13,7 @@ public class ArchiveEntityFix extends JavaPlugin {
     saveDefaultConfig();
     reloadConfig();
     getLogger().info("Loading ArchiveEntityFix...");
-    if (getConfig().getBoolean("entity-nan-velocity-remove")) {
+    if (getConfig().getBoolean("entity-nan-props-remove")) {
       getLogger().info("Enabling Entity NaN Velocity Removal");
       getServer().getPluginManager().registerEvents(new EntityAddListener(), this);
     }
