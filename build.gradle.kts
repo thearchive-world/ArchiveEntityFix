@@ -11,17 +11,11 @@ repositories {
     maven("https://repo.papermc.io/repository/maven-public/") {
         name = "papermc-repo"
     }
-    maven("https://libraries.minecraft.net") {
-        name = "minecraft"
-    }
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:${property("paper_api")}")
     implementation("io.papermc:paperlib:1.0.8")
-    testImplementation("io.papermc.paper:paper-api:${property("paper_api")}")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.3")
 }
 
 val targetJavaVersion = 21
@@ -39,20 +33,14 @@ tasks {
         options.encoding = "UTF-8"
         options.release.set(targetJavaVersion)
         options.compilerArgs.add("-Xlint:deprecation")
-        options.compilerArgs.add("-Xlint:unchecked")
-    }
-
-    test {
-        useJUnitPlatform()
     }
 
     processResources {
         val props = mapOf(
-            "NAME" to rootProject.name,
-            "VERSION" to project.version,
-            "PACKAGE" to project.group.toString()
+            "version" to project.version,
+            "api_version" to project.property("api_version")
         )
-        filesMatching("**/plugin.yml") {
+        filesMatching("paper-plugin.yml") {
             filteringCharset = "UTF-8"
             expand(props)
         }
@@ -64,8 +52,7 @@ tasks {
 
     shadowJar {
         archiveClassifier = ""
-        // Don't relocate - causes issues with Java 21 records and shadow plugin
-        // relocate("io.papermc.lib", "shadow.io.papermc.paperlib")
+        relocate("io.papermc.lib", "shadow.io.papermc.paperlib")
     }
 
     build {
