@@ -15,7 +15,6 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:${property("paper_api")}")
-    implementation("io.papermc:paperlib:1.0.8")
 }
 
 val targetJavaVersion = 21
@@ -52,7 +51,6 @@ tasks {
 
     shadowJar {
         archiveClassifier = ""
-        relocate("io.papermc.lib", "shadow.io.papermc.paperlib")
     }
 
     build {
