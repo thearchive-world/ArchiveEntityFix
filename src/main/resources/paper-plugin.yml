@@ -1,0 +1,8 @@
+name: ArchiveEntityFix
+version: '${version}'
+main: archive.ArchiveEntityFix
+api-version: '${api_version}'
+description: Patches and fixes for thearchive.world
+authors:
+  - rfresh2
+website: https://thearchive.world
