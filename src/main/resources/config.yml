@@ -1,2 +1,10 @@
+# ArchiveEntityFix Configuration
+
+# Remove entities with invalid position/velocity/rotation
 entity-nan-props-remove: true
+
+# Block wither skull projectiles
 wither-skull-spawn-remove: true
+
+# Log each entity removal
+log-removals: true
